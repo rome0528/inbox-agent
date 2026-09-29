@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Runs the inbox agent daily at 07:00. If the Mac is asleep then, it runs on wake.
+     Replace /Users/USERNAME with your home directory before installing.
+     Install: cp scripts/com.inboxagent.daily.plist ~/Library/LaunchAgents/ && launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.inboxagent.daily.plist
+     Remove:  launchctl bootout gui/$(id -u)/com.inboxagent.daily && rm ~/Library/LaunchAgents/com.inboxagent.daily.plist -->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.inboxagent.daily</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/USERNAME/inbox-agent/scripts/daily_run.sh</string>
+    </array>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>7</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+    <key>StandardOutPath</key>
+    <string>/Users/USERNAME/inbox-agent/logs/agent.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/USERNAME/inbox-agent/logs/agent.log</string>
+</dict>
+</plist>
